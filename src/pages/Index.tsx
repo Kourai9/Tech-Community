@@ -113,18 +113,23 @@ const Index = () => {
           <>
             {/* Create Post */}
             <Card className="bg-gray-800 border-gray-700">
-              <CardContent className="p-4">
-                <div className="flex items-center space-x-3">
-                  <Avatar className="w-10 h-10">
+              <CardContent className="p-3 sm:p-4">
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <Avatar className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0">
                     <AvatarImage src="/placeholder.svg" />
                     <AvatarFallback>JD</AvatarFallback>
                   </Avatar>
-                  <Button variant="outline" className="flex-1 justify-start text-gray-400 bg-gray-700 border-gray-600">
-                    What's on your mind, Juan?
-                  </Button>
-                  <Button size="sm">
-                    <Plus className="w-4 h-4 mr-2" />
-                    Post
+                  <div className="flex-1 min-w-0">
+                    <Button 
+                      variant="outline" 
+                      className="w-full justify-start text-gray-400 bg-gray-700 border-gray-600 h-8 sm:h-10 text-sm px-3"
+                    >
+                      What's on your mind, Juan?
+                    </Button>
+                  </div>
+                  <Button size="sm" className="flex-shrink-0 h-8 sm:h-10 px-2 sm:px-4">
+                    <Plus className="w-4 h-4 sm:mr-2" />
+                    <span className="hidden sm:inline">Post</span>
                   </Button>
                 </div>
               </CardContent>
@@ -133,28 +138,28 @@ const Index = () => {
             {/* Posts */}
             {posts.map((post) => (
               <Card key={post.id} className="bg-gray-800 border-gray-700">
-                <CardContent className="p-4">
+                <CardContent className="p-3 sm:p-4">
                   <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center space-x-3">
-                      <Avatar className="w-10 h-10">
+                    <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
+                      <Avatar className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0">
                         <AvatarFallback>{post.author.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                       </Avatar>
-                      <div>
-                        <h4 className="font-semibold text-white">{post.author}</h4>
-                        <p className="text-sm text-gray-400">{post.course} • {post.time}</p>
+                      <div className="min-w-0 flex-1">
+                        <h4 className="font-semibold text-white text-sm sm:text-base truncate">{post.author}</h4>
+                        <p className="text-xs sm:text-sm text-gray-400 truncate">{post.course} • {post.time}</p>
                       </div>
                     </div>
-                    <Button variant="ghost" size="sm">
+                    <Button variant="ghost" size="sm" className="flex-shrink-0">
                       <MoreHorizontal className="w-4 h-4" />
                     </Button>
                   </div>
 
-                  <p className="text-white mb-3">{post.content}</p>
+                  <p className="text-white mb-3 text-sm sm:text-base">{post.content}</p>
 
                   {post.skills && (
-                    <div className="flex gap-2 mb-3 flex-wrap">
+                    <div className="flex gap-1 sm:gap-2 mb-3 flex-wrap">
                       {post.skills.map((skill, index) => (
-                        <Badge key={index} className="bg-blue-600 text-white">
+                        <Badge key={index} className="bg-blue-600 text-white text-xs">
                           {skill}
                         </Badge>
                       ))}
@@ -167,23 +172,23 @@ const Index = () => {
                     </div>
                   )}
 
-                  <div className="flex items-center justify-between text-sm text-gray-400 mb-3">
+                  <div className="flex items-center justify-between text-xs sm:text-sm text-gray-400 mb-3">
                     <span>{post.likes} likes</span>
                     <span>{post.comments} comments • {post.shares} shares</span>
                   </div>
 
                   <div className="flex items-center justify-between pt-3 border-t border-gray-700">
-                    <Button variant="ghost" size="sm" className="flex items-center space-x-2 text-gray-400 hover:text-red-400">
+                    <Button variant="ghost" size="sm" className="flex-1 flex items-center justify-center space-x-1 sm:space-x-2 text-gray-400 hover:text-red-400">
                       <Heart className="w-4 h-4" />
-                      <span className="hidden sm:inline">Like</span>
+                      <span className="text-xs sm:text-sm">Like</span>
                     </Button>
-                    <Button variant="ghost" size="sm" className="flex items-center space-x-2 text-gray-400 hover:text-blue-400">
+                    <Button variant="ghost" size="sm" className="flex-1 flex items-center justify-center space-x-1 sm:space-x-2 text-gray-400 hover:text-blue-400">
                       <MessageSquare className="w-4 h-4" />
-                      <span className="hidden sm:inline">Comment</span>
+                      <span className="text-xs sm:text-sm">Comment</span>
                     </Button>
-                    <Button variant="ghost" size="sm" className="flex items-center space-x-2 text-gray-400 hover:text-green-400">
+                    <Button variant="ghost" size="sm" className="flex-1 flex items-center justify-center space-x-1 sm:space-x-2 text-gray-400 hover:text-green-400">
                       <Share className="w-4 h-4" />
-                      <span className="hidden sm:inline">Share</span>
+                      <span className="text-xs sm:text-sm">Share</span>
                     </Button>
                   </div>
                 </CardContent>
@@ -197,11 +202,11 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Header */}
-      <header className="bg-gray-800 border-b border-gray-700 px-4 py-3 sticky top-0 z-50">
+      <header className="bg-gray-800 border-b border-gray-700 px-3 sm:px-4 py-2 sm:py-3 sticky top-0 z-50">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <h1 className="text-xl sm:text-2xl font-bold text-blue-400">FIT Connect</h1>
-            <div className="relative flex-1 max-w-md hidden sm:block">
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-400">FIT Connect</h1>
+            <div className="relative flex-1 max-w-md hidden lg:block">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
               <Input 
                 placeholder="Search students, posts, study groups..." 
@@ -211,7 +216,7 @@ const Index = () => {
           </div>
           
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6">
+          <nav className="hidden lg:flex items-center space-x-2 xl:space-x-6">
             <Button
               variant={activeTab === "home" ? "default" : "ghost"}
               size="sm"
@@ -276,8 +281,8 @@ const Index = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-gray-700">
-            <div className="flex flex-col space-y-2 mt-4">
+          <div className="lg:hidden mt-3 pb-3 border-t border-gray-700">
+            <div className="flex flex-col space-y-1 mt-3">
               <Button
                 variant={activeTab === "home" ? "default" : "ghost"}
                 size="sm"
@@ -329,7 +334,7 @@ const Index = () => {
             </div>
             
             {/* Mobile Search */}
-            <div className="relative mt-4">
+            <div className="relative mt-3">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
               <Input 
                 placeholder="Search students, posts, study groups..." 
@@ -340,24 +345,24 @@ const Index = () => {
         )}
       </header>
 
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-4 lg:gap-6 p-4">
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-3 sm:gap-4 lg:gap-6 p-3 sm:p-4">
         {/* Left Sidebar - Hidden on mobile, shown on tablet+ */}
-        <aside className="hidden md:block w-full md:w-64 lg:w-64 space-y-4">
+        <aside className="hidden md:block w-full md:w-60 lg:w-64 space-y-4">
           <Card className="bg-gray-800 border-gray-700">
             <CardContent className="p-4">
               <div className="flex items-center space-x-3 mb-4">
-                <Avatar className="w-12 h-12">
+                <Avatar className="w-10 h-10 sm:w-12 sm:h-12">
                   <AvatarImage src="/placeholder.svg" />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
-                <div>
-                  <h3 className="font-semibold text-white">Juan Dela Cruz</h3>
-                  <p className="text-sm text-gray-400">BSIT 3rd Year</p>
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-semibold text-white text-sm sm:text-base truncate">Juan Dela Cruz</h3>
+                  <p className="text-xs sm:text-sm text-gray-400 truncate">BSIT 3rd Year</p>
                 </div>
               </div>
-              <Button className="w-full" variant="outline">
+              <Button className="w-full" variant="outline" size="sm">
                 <GraduationCap className="w-4 h-4 mr-2" />
-                View Portfolio
+                <span className="text-sm">View Portfolio</span>
               </Button>
             </CardContent>
           </Card>
@@ -365,14 +370,14 @@ const Index = () => {
           {/* Study Groups */}
           <Card className="bg-gray-800 border-gray-700">
             <CardContent className="p-4">
-              <h3 className="font-semibold mb-3 text-white">Active Study Groups</h3>
+              <h3 className="font-semibold mb-3 text-white text-sm sm:text-base">Active Study Groups</h3>
               {studyGroups.map((group, index) => (
                 <div key={index} className="flex items-center justify-between py-2">
-                  <div>
-                    <p className="font-medium text-sm text-white">{group.name}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-medium text-sm text-white truncate">{group.name}</p>
                     <p className="text-xs text-gray-400">{group.members} members</p>
                   </div>
-                  <Badge variant="secondary" className="bg-blue-600 text-white text-xs">
+                  <Badge variant="secondary" className="bg-blue-600 text-white text-xs ml-2 flex-shrink-0">
                     {group.topic}
                   </Badge>
                 </div>
@@ -384,17 +389,17 @@ const Index = () => {
           <Card className="bg-gray-800 border-gray-700">
             <CardContent className="p-4">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="font-semibold text-white">Nearby Students</h3>
+                <h3 className="font-semibold text-white text-sm sm:text-base">Nearby Students</h3>
                 <MapPin className="w-4 h-4 text-green-400" />
               </div>
               {nearbyStudents.map((student, index) => (
                 <div key={index} className="flex items-center space-x-3 py-2">
-                  <Avatar className="w-8 h-8">
-                    <AvatarFallback>{student.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                  <Avatar className="w-8 h-8 flex-shrink-0">
+                    <AvatarFallback className="text-xs">{student.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                   </Avatar>
-                  <div className="flex-1">
-                    <p className="font-medium text-sm text-white">{student.name}</p>
-                    <p className="text-xs text-gray-400">{student.course} • {student.distance}</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-sm text-white truncate">{student.name}</p>
+                    <p className="text-xs text-gray-400 truncate">{student.course} • {student.distance}</p>
                     <div className="flex gap-1 mt-1 flex-wrap">
                       {student.skills.map((skill, i) => (
                         <Badge key={i} variant="outline" className="text-xs border-gray-600 text-gray-300">
@@ -410,30 +415,30 @@ const Index = () => {
         </aside>
 
         {/* Main Feed */}
-        <main className="flex-1 space-y-4">
+        <main className="flex-1 space-y-3 sm:space-y-4 min-w-0">
           {renderContent()}
         </main>
 
         {/* Right Sidebar - Hidden on mobile and tablet, shown on desktop */}
-        <aside className="hidden lg:block w-80 space-y-4">
+        <aside className="hidden xl:block w-80 space-y-4">
           <Card className="bg-gray-800 border-gray-700">
             <CardContent className="p-4">
               <h3 className="font-semibold mb-3 text-white">Upcoming Events</h3>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
                     <span className="text-white font-bold">15</span>
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <p className="font-medium text-white">Tech Talk: AI in Education</p>
                     <p className="text-sm text-gray-400">Tomorrow, 2:00 PM</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center">
+                  <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
                     <span className="text-white font-bold">18</span>
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <p className="font-medium text-white">Career Fair 2024</p>
                     <p className="text-sm text-gray-400">Friday, 9:00 AM</p>
                   </div>
@@ -467,7 +472,7 @@ const Index = () => {
               <h3 className="font-semibold mb-3 text-white">Trending Skills</h3>
               <div className="flex flex-wrap gap-2">
                 {["React", "Python", "Java", "Machine Learning", "Web Design", "Data Science", "Mobile Dev", "AI"].map((skill, index) => (
-                  <Badge key={index} variant="outline" className="border-gray-600 text-gray-300 hover:bg-blue-600 hover:text-white cursor-pointer">
+                  <Badge key={index} variant="outline" className="border-gray-600 text-gray-300 hover:bg-blue-600 hover:text-white cursor-pointer text-xs">
                     {skill}
                   </Badge>
                 ))}
@@ -476,6 +481,60 @@ const Index = () => {
           </Card>
         </aside>
       </div>
+
+      {/* Mobile Bottom Navigation - Facebook style */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-gray-800 border-t border-gray-700 px-2 py-1 z-50">
+        <div className="flex items-center justify-around max-w-sm mx-auto">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setActiveTab("home")}
+            className={`flex flex-col items-center space-y-1 p-2 ${activeTab === "home" ? "text-blue-400" : "text-gray-400"}`}
+          >
+            <Home className="w-5 h-5" />
+            <span className="text-xs">Home</span>
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setActiveTab("study")}
+            className={`flex flex-col items-center space-y-1 p-2 ${activeTab === "study" ? "text-blue-400" : "text-gray-400"}`}
+          >
+            <Users className="w-5 h-5" />
+            <span className="text-xs">Groups</span>
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setActiveTab("messages")}
+            className={`flex flex-col items-center space-y-1 p-2 ${activeTab === "messages" ? "text-blue-400" : "text-gray-400"}`}
+          >
+            <MessageCircle className="w-5 h-5" />
+            <span className="text-xs">Messages</span>
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="flex flex-col items-center space-y-1 p-2 text-gray-400 relative"
+          >
+            <Bell className="w-5 h-5" />
+            <span className="text-xs">Notifications</span>
+            <span className="absolute -top-1 right-2 bg-red-500 text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setActiveTab("portfolio")}
+            className={`flex flex-col items-center space-y-1 p-2 ${activeTab === "portfolio" ? "text-blue-400" : "text-gray-400"}`}
+          >
+            <User className="w-5 h-5" />
+            <span className="text-xs">Profile</span>
+          </Button>
+        </div>
+      </div>
+
+      {/* Mobile bottom padding to account for fixed bottom nav */}
+      <div className="lg:hidden h-16"></div>
     </div>
   );
 };
